@@ -14,14 +14,17 @@ public class Player {
     }
 
     // 열쇠 획득
-    public void addKey(){
-        keyCount++;
+    public int addKey(){
+
+        return ++keyCount;
     }
 
     // 재도전 횟수 감소
-    public void decreaseRetryCount(){
+    public int decreaseRetryCount(){
         if (retryCount > 0) {
-            retryCount--;
+            return --retryCount;
+        } else {
+            return retryCount;
         }
     }
 
