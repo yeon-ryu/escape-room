@@ -30,6 +30,12 @@ public class Player {
         return retryCount >0;
     }
 
+    // 재도전 시 열쇠, 재도전횟수 카운트 리셋
+    public void resetInfo() {
+        retryCount = 5;
+        keyCount = 0;
+    }
+
     // 게임 클리어 시 출력할 player 정보
     public void showPlayerStatus() {
         System.out.println(" ======================== ");
