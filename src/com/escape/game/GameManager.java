@@ -50,7 +50,7 @@ public class GameManager {
                 }
             }
             System.out.println(selectSb.toString());
-            System.out.print("들어갈 방을 선택해 주세요 : ");
+            System.out.print("들어갈 방 번호를 입력해 주세요 : ");
 
             int no = sc.nextInt();
 

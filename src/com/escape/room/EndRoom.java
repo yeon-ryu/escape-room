@@ -16,6 +16,7 @@ public class EndRoom extends Room{
         if(player.getKeyCount() >= 3) {
             clear();
         } else {
+            System.out.println("열쇠 갯수가 부족합니다!");
             fail();
         }
     }
