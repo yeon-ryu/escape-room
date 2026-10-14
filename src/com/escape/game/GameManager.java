@@ -1,16 +1,18 @@
 package com.escape.game;
 
 import com.escape.player.Player;
-import com.escape.room.Room5;
+import com.escape.room.EndRoom;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class GameManager {
+    private static final int MAX_ROOM = 5;
+
     private static GameManager gameManager;
 
     private Player player;
-    private boolean[] playedRoom = new boolean[5];
+    private boolean[] playedRoom = new boolean[MAX_ROOM];
     private Scanner sc = new Scanner(System.in);
 
     private GameManager() {}
@@ -22,6 +24,9 @@ public class GameManager {
 
     private void insertPlayer() {
         // 플레이어 정보 입력
+        System.out.print("플레이어명을 입력해주세요 : ");
+        String name = sc.nextLine();
+        player = new Player(name);
     }
 
     public void selectMenu() {
@@ -29,9 +34,42 @@ public class GameManager {
             insertPlayer();
         }
 
-        player.showPlayerStatus();
-
         // 메인 메뉴 선택
+        while(true) {
+            player.showPlayerStatus();
+
+            StringBuilder selectSb = new StringBuilder();
+
+            for(int i = 0; i < MAX_ROOM; i++) {
+                if(!playedRoom[i]) {
+                    if(i == 0) {
+                        selectSb.append(0 + "번 방(탈출 방)\t");
+                    } else {
+                        selectSb.append(i + "번 방\t");
+                    }
+                }
+            }
+            System.out.println(selectSb.toString());
+            System.out.print("들어갈 방을 선택해 주세요 : ");
+
+            int no = sc.nextInt();
+
+            switch(no) {
+                case 1 :
+                    if(!playedRoom[1]) System.out.println("이미 클리어하신 방입니다.");
+                    playedRoom[1] = true;
+                    // 1번 방 이동
+                    break;
+                    // ++다른 방들 case 작성
+                case 0 :
+                    EndRoom endRoom = new EndRoom(player);
+                    endRoom.play();
+                    return;
+                default:
+                    System.out.println("존재하지 않는 방입니다.");
+
+            }
+        }
     }
 
     public void reset() {
@@ -49,8 +87,8 @@ public class GameManager {
     public void fail() {
         int retryCount = player.decreaseRetryCount();
         if(retryCount == 0) {
-            Room5 room5 = new Room5();
-            room5.fail();
+            EndRoom endRoom = new EndRoom(player);
+            endRoom.fail();
         }
     }
 }
