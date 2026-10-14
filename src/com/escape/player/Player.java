@@ -1,0 +1,55 @@
+package com.escape.player;
+
+public class Player {
+
+    private String name;
+    private int retryCount;
+    private int keyCount;
+
+    // 게임 시작 시 name입력 받음
+    public Player(String name) {
+        this.name = name;
+        this.retryCount = 5;
+        this.keyCount = 0;
+    }
+
+    // 열쇠 획득
+    public void addKey(){
+        keyCount++;
+    }
+
+    // 재도전 횟수 감소
+    public void decreaseRetryCount(){
+        if (retryCount > 0) {
+            retryCount--;
+        }
+    }
+
+    // 재도전 가능 여부
+    public boolean canRetry() {
+        return retryCount >0;
+    }
+
+    // 게임 클리어 시 출력할 player 정보
+    public void showPlayerStatus() {
+        System.out.println(" ======================== ");
+        System.out.println(" <===== 플레이어 정보 =====> ");
+        System.out.println("이름 : " + name);
+        System.out.println("남은 재도전 횟수 : " + retryCount + "회");
+        System.out.println("획득한 열쇠 개수 : " + keyCount + " / 3 개");
+        System.out.println(" ======================== ");
+    }
+
+    // getter 생성
+    public String getName() {
+        return name;
+    }
+
+    public int getRetryCount() {
+        return retryCount;
+    }
+
+    public int getKeyCount() {
+        return keyCount;
+    }
+}
