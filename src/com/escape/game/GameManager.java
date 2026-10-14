@@ -7,9 +7,18 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class GameManager {
+    private static GameManager gameManager;
+
     private Player player;
     private boolean[] playedRoom = new boolean[5];
     private Scanner sc = new Scanner(System.in);
+
+    private GameManager() {}
+
+    public static GameManager getInstance() {
+        if(gameManager == null) gameManager = new GameManager();
+        return gameManager;
+    }
 
     private void insertPlayer() {
         // 플레이어 정보 입력
