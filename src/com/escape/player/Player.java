@@ -14,20 +14,29 @@ public class Player {
     }
 
     // 열쇠 획득
-    public void addKey(){
-        keyCount++;
+    public int addKey(){
+
+        return ++keyCount;
     }
 
     // 재도전 횟수 감소
-    public void decreaseRetryCount(){
+    public int decreaseRetryCount(){
         if (retryCount > 0) {
-            retryCount--;
+            return --retryCount;
+        } else {
+            return retryCount;
         }
     }
 
     // 재도전 가능 여부
     public boolean canRetry() {
         return retryCount >0;
+    }
+
+    // 재도전 시 열쇠, 재도전횟수 카운트 리셋
+    public void resetInfo() {
+        retryCount = 5;
+        keyCount = 0;
     }
 
     // 게임 클리어 시 출력할 player 정보
