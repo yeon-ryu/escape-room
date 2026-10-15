@@ -61,7 +61,6 @@ public class GameManager {
             switch(no) {
                 case 1 :
                     if(!playedRoom[1]) System.out.println("이미 클리어하신 방입니다.");
-                    playedRoom[1] = true;
                     // 1번 방 이동
                     break;
                     // ++다른 방들 case 작성
@@ -80,7 +79,11 @@ public class GameManager {
         Arrays.fill(playedRoom, false);
     }
 
-    public void clear() {
+    public void clear(int roomIdx) {
+        // 클리어한 방 번호 받아서 플레이 완료 처리
+        playedRoom[roomIdx] = true;
+
+        // 열쇠 증가
         int keyCount = player.addKey();
         if(keyCount >= 3) {
             System.out.println("열쇠를 3개 이상 모으셨습니다. 5번 방으로 가시면 클리어하실 수 있습니다.");
@@ -89,6 +92,7 @@ public class GameManager {
     }
 
     public void fail() {
+        // 재도전 횟수 감소
         int retryCount = player.decreaseRetryCount();
         if(retryCount == 0) {
             EndRoom endRoom = new EndRoom(player);

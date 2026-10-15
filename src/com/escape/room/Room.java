@@ -13,9 +13,9 @@ public abstract class Room {
 
     // Room 1~4 는 이하 메소드 오버라이딩 따로 필요 없음
 
-    public void clear() {
+    public void clear(int roomIdx) {
         // play() 에서 clear 시 해당 메소드를 부른다.
-        gm.clear();
+        gm.clear(roomIdx);
     }
 
     public void fail() {
