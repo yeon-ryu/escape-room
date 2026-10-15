@@ -2,8 +2,6 @@ package com.escape.room;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.UUID;
 
 public class Blackjack extends Room{
     private final String[] deck = new String[52]; // 빠져나간 카드는 "X" 로 변경
@@ -19,7 +17,7 @@ public class Blackjack extends Room{
             }
         }
 
-        System.out.println("블랙잭 게임방에 들어오셨습니다.");
+        System.out.println("== 블랙잭 게임방에 들어오셨습니다. ==");
     }
 
     @Override
@@ -62,7 +60,7 @@ public class Blackjack extends Room{
             if("Y".equalsIgnoreCase(select)) {
                 playerCards.add(drawCard());
                 playerScore = calculateScore(playerCards);
-                System.out.println(playerScore);
+                
                 if(playerScore == BLACK_JACK) {
                     System.out.println("축하드립니다!! 블랙잭으로 승리하셨습니다!");
                     System.out.println("플레이어 점수 : " + playerScore + ", 플레이어 카드 : " + playerCards);
@@ -148,14 +146,9 @@ public class Blackjack extends Room{
     }
 
     private String drawCard() {
-        System.out.println("카드를 뽑습니다.");
-        // !!!!!!!!!!! 가끔 오류나서 여기 이후로 출력이 안됨. 확인 필요!!
-        long nowHash = UUID.randomUUID().hashCode();
-
-        System.out.println("체크용도!! 여기까지 오나 << 오류날 때 여기 안 오면 해시 만드는거 그냥 제거하자...");
         while(true) {
-            Random random = new Random(nowHash);
-            int idx = random.nextInt(52);
+            int idx = (int)(Math.random() * 52);
+
             if(!deck[idx].equals("X")) {
                 String draw = deck[idx];
                 deck[idx] = "X";
@@ -167,6 +160,9 @@ public class Blackjack extends Room{
     private String makeCard(int type, int num) {
         StringBuilder sb = new StringBuilder();
         String[] strCards = {"K", "Q", "J", "A"};
+
+        // 카드를 n벌 사용할 경우 deck 은 52 * n, type 은 4 * n 개씩 늘린다. (현재는 1벌 사용 중)
+        type = type % 4;
 
         switch(type) {
             case 0:
