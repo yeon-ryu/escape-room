@@ -62,7 +62,10 @@ public class GameManager {
 
             switch(no) {
                 case 1 :
-                    if(playedRoom[1]) System.out.println("이미 클리어하신 방입니다.");
+                    if(playedRoom[1]) {
+                        System.out.println("이미 클리어하신 방입니다.");
+                        break;
+                    }
                     // 1번 방 이동
                     Room blackjack = new Blackjack();
                     blackjack.play();
