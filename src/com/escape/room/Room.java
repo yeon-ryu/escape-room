@@ -9,11 +9,14 @@ public abstract class Room {
     // 순환 오류 안 나는 것 같으니 protected 필드로 뒀는데 발생 시 메소드 안에서 부르도록 수정
     protected GameManager gm = GameManager.getInstance();
 
+    /* 각 방은 고유한 roomIdx 를 반드시 구현하여야 합니다. */
+    protected int roomIdx = -1;
+
     public abstract void play();
 
     // Room 1~4 는 이하 메소드 오버라이딩 따로 필요 없음
 
-    public void clear(int roomIdx) {
+    public void clear() {
         // play() 에서 clear 시 해당 메소드를 부른다.
         gm.clear(roomIdx);
     }

@@ -13,7 +13,7 @@ public class EndRoom extends Room{
     public void play() {
         // 멤버의 열쇠 갯수가 3개 이상이면 clear(), 미만이면 fail() 호출
         if(player.getKeyCount() >= 3) {
-            clear(0);
+            clear();
         } else {
             System.out.println("열쇠 갯수가 부족합니다!");
             fail();
@@ -21,7 +21,7 @@ public class EndRoom extends Room{
     }
 
     @Override
-    public void clear(int roomIdx) {
+    public void clear() {
         // 꾸미는건 나중에 상의
         System.out.println("축하드립니다!! 게임을 클리어하셨습니다!!🎉");
     }
