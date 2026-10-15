@@ -1,7 +1,9 @@
 package com.escape.game;
 
 import com.escape.player.Player;
+import com.escape.room.Blackjack;
 import com.escape.room.EndRoom;
+import com.escape.room.Room;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -60,12 +62,14 @@ public class GameManager {
 
             switch(no) {
                 case 1 :
-                    if(!playedRoom[1]) System.out.println("이미 클리어하신 방입니다.");
+                    if(playedRoom[1]) System.out.println("이미 클리어하신 방입니다.");
                     // 1번 방 이동
+                    Room blackjack = new Blackjack();
+                    blackjack.play();
                     break;
                     // ++다른 방들 case 작성
                 case 0 :
-                    EndRoom endRoom = new EndRoom(player);
+                    Room endRoom = new EndRoom(player);
                     endRoom.play();
                     break;
                 default:
