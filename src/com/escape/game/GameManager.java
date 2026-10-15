@@ -2,6 +2,7 @@ package com.escape.game;
 
 import com.escape.player.Player;
 import com.escape.room.EndRoom;
+import com.escape.room.Room;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -65,8 +66,8 @@ public class GameManager {
                     break;
                     // ++다른 방들 case 작성
                 case 0 :
-                    EndRoom endRoom = new EndRoom(player);
-                    endRoom.play();
+                    Room room = new EndRoom(player);
+                    room.play();
                     break;
                 default:
                     System.out.println("존재하지 않는 방입니다.");
