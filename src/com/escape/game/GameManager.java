@@ -86,7 +86,7 @@ public class GameManager {
         // 열쇠 증가
         int keyCount = player.addKey();
         if(keyCount >= 3) {
-            System.out.println("열쇠를 3개 이상 모으셨습니다. 5번 방으로 가시면 클리어하실 수 있습니다.");
+            System.out.println("열쇠를 3개 이상 모으셨습니다. 탈출 방으로 가시면 클리어하실 수 있습니다.");
         }
         selectMenu();
     }
