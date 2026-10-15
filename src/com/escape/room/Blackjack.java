@@ -3,6 +3,7 @@ package com.escape.room;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 public class Blackjack extends Room{
     private final String[] deck = new String[52]; // 빠져나간 카드는 "X" 로 변경
@@ -18,12 +19,14 @@ public class Blackjack extends Room{
             }
         }
 
-//        System.out.println(Arrays.toString(deck));
+        System.out.println("블랙잭 게임방에 들어오셨습니다.");
     }
 
     @Override
     public void play() {
         printRule();
+
+        System.out.println("== 블랙잭 게임을 시작합니다. ==");
 
         List<String> dealerCards = new ArrayList<>();
         List<String> playerCards = new ArrayList<>();
@@ -41,9 +44,17 @@ public class Blackjack extends Room{
             2-2. 시스템 내부에서는 플레이어의 카드 총합을 계산하고, 플레이어의 카드 (A 의 경우 최대)합계가 21 이 될 경우 블랙잭이 되고 승리가 되며, (A의 경우 최소)**합계가 21 이 넘을 경우 플레이어의 패배**가 된다.
         */
         while(true) {
-            System.out.println("딜러 카드 : [" + dealerCards.get(0) + ", □]");
+            System.out.println("딜러 카드 : [" + dealerCards.getFirst() + ", □]");
             System.out.println("플레이어 카드 : " + playerCards);
 //            System.out.println("현재 플레이어의 숫자 : " + playerScore); // 스스로 계산하는 것까지가 블랙잭의 묘미일듯
+
+            // 첫 턴에 블랙잭이 될 수 있다 (내가 테스트하며 겪음)
+            if(playerScore == BLACK_JACK) {
+                System.out.println("축하드립니다!! 블랙잭으로 승리하셨습니다!");
+                System.out.println("플레이어 점수 : " + playerScore + ", 플레이어 카드 : " + playerCards);
+                clear();
+                return;
+            }
 
             System.out.print("카드를 한 장 더 뽑으시겠습니까?(y/n) : ");
             String select = sc.nextLine();
@@ -51,6 +62,7 @@ public class Blackjack extends Room{
             if("Y".equalsIgnoreCase(select)) {
                 playerCards.add(drawCard());
                 playerScore = calculateScore(playerCards);
+                System.out.println(playerScore);
                 if(playerScore == BLACK_JACK) {
                     System.out.println("축하드립니다!! 블랙잭으로 승리하셨습니다!");
                     System.out.println("플레이어 점수 : " + playerScore + ", 플레이어 카드 : " + playerCards);
@@ -69,6 +81,7 @@ public class Blackjack extends Room{
         }
 
         /* 딜러는 카드를 합계 17이상 될 때까지 뽑는다 */
+        System.out.println("딜러가 카드를 뽑기 시작합니다.");
         int dealerScore = calculateScore(dealerCards);
         while(dealerScore < 17) {
             dealerCards.add(drawCard());
@@ -78,7 +91,7 @@ public class Blackjack extends Room{
         System.out.println("딜러가 카드를 전부 뽑았습니다.");
         System.out.println("==== 결과 ====");
 
-        /* 4. 플레이어가 딜러보다 더 높거나 딜러가 버스트 됐을 경우 승리, 딜러가 더 높을 경우 플레이어의 패배가 된다. */
+        /* 4. 플레이어가 딜러보다 더 높거나 딜러가 버스트 됐을 경우 승리, 딜러가 더 높거나 같을 경우 플레이어의 패배가 된다. */
         boolean playerWin = false;
         if(dealerScore > BLACK_JACK || dealerScore < playerScore) {
             playerWin = true;
@@ -135,7 +148,11 @@ public class Blackjack extends Room{
     }
 
     private String drawCard() {
-        long nowHash = System.nanoTime();
+        System.out.println("카드를 뽑습니다.");
+        // !!!!!!!!!!! 가끔 오류나서 여기 이후로 출력이 안됨. 확인 필요!!
+        long nowHash = UUID.randomUUID().hashCode();
+
+        System.out.println("체크용도!! 여기까지 오나 << 오류날 때 여기 안 오면 해시 만드는거 그냥 제거하자...");
         while(true) {
             Random random = new Random(nowHash);
             int idx = random.nextInt(52);
