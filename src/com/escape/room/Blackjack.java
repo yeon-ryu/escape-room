@@ -2,9 +2,11 @@ package com.escape.room;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Blackjack extends Room{
     private String[] deck = new String[52]; // 빠져나간 카드는 "X" 로 변경
+    private static final int BLACK_JACK = 21;
 
     public Blackjack() {
         roomIdx = 1;
@@ -16,8 +18,7 @@ public class Blackjack extends Room{
             }
         }
 
-        System.out.println(Arrays.toString(deck));
-
+//        System.out.println(Arrays.toString(deck));
     }
 
     @Override
@@ -36,13 +37,55 @@ public class Blackjack extends Room{
         // 승리시 clear(), 패배시 fail() 호출
     }
 
+    /* 카드풀의 점수를 계산한다. 모든 경우의 수를 측정하여 최대한 21을 안 넘는 선에서 큰 수를 반환한다. */
     private int calculateSum(List<String> cards) {
         int sum = 0;
 
         // 카드는 ◆4 나 ♣A 이런 식이므로 subStr 로 1번째 인덱스부터 읽어와 대응하는 숫자로 변경한다.
         // A 는 1 도 되고 11 도 되는데 계산할 때 11 로 계산시 버스트가 될 경우 1 로 계산하여 21 이 넘지 않는 최대한 높은 수가 되도록 계산
+        int aceCount = 0;
+
+        for(String card : cards) {
+            String strNum = card.substring(1);
+            if(strNum.equals("A")) {
+                aceCount++;
+            } else if(strNum.equals("K") || strNum.equals("Q") || strNum.equals("J")) {
+                sum += 10;
+            } else {
+                sum += Integer.valueOf(strNum);
+            }
+        }
+
+        sum = calculateAce(sum, aceCount, 0);
 
         return sum;
+    }
+
+    /* 모든 경우의 수를 측정하여 최대한 21을 안 넘는 선에서 큰 수를 반환한다. */
+    private int calculateAce(int sum, int aceCount, int idx) {
+        if(idx == aceCount) return sum;
+
+        int small = calculateAce(sum + 1, aceCount, idx + 1);
+        int large = calculateAce(sum + 11, aceCount, idx + 1);
+
+        if(small > BLACK_JACK || large > BLACK_JACK) {
+            return small;
+        } else {
+            return large;
+        }
+    }
+
+    private String drawCard() {
+        long nowHash = System.nanoTime();
+        while(true) {
+            Random random = new Random(nowHash);
+            int idx = random.nextInt(52);
+            if(!deck[idx].equals("X")) {
+                String draw = deck[idx];
+                deck[idx] = "X";
+                return draw;
+            }
+        }
     }
 
     private String makeCard(int type, int num) {
@@ -87,6 +130,6 @@ public class Blackjack extends Room{
     }
 
     private void printRule() {
-
+        System.out.println("블랙잭 룰 설명 (+승리조건, 패배조건)");
     }
 }
