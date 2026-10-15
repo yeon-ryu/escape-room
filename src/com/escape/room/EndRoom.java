@@ -1,6 +1,5 @@
 package com.escape.room;
 
-import com.escape.game.GameManager;
 import com.escape.player.Player;
 
 public class EndRoom extends Room{
@@ -34,13 +33,13 @@ public class EndRoom extends Room{
         String select = sc.nextLine();
         if("Y".equalsIgnoreCase(select)) {
             // 재도전 횟수, 열쇠 개수, gameManager 에서 플레이한 방 기록 초기화
-            // gameMaager 메뉴 선택 호출
+            // gameManager 메뉴 선택 호출
             player.resetInfo();
-            GameManager gameManager = GameManager.getInstance();
-            gameManager.reset();
-            gameManager.selectMenu();
+            gm.reset();
+            gm.selectMenu();
         } else {
             System.out.println("게임을 종료합니다.");
+            gm.setGameEnd();
         }
     }
 }

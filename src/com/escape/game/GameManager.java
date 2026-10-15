@@ -15,6 +15,8 @@ public class GameManager {
     private boolean[] playedRoom = new boolean[MAX_ROOM];
     private Scanner sc = new Scanner(System.in);
 
+    private boolean isGameEnd = false;
+
     private GameManager() {}
 
     public static GameManager getInstance() {
@@ -36,6 +38,8 @@ public class GameManager {
 
         // 메인 메뉴 선택
         while(true) {
+            if(isGameEnd) return;
+
             player.showPlayerStatus();
 
             StringBuilder selectSb = new StringBuilder();
@@ -64,7 +68,7 @@ public class GameManager {
                 case 0 :
                     EndRoom endRoom = new EndRoom(player);
                     endRoom.play();
-                    return;
+                    break;
                 default:
                     System.out.println("존재하지 않는 방입니다.");
 
@@ -90,5 +94,9 @@ public class GameManager {
             EndRoom endRoom = new EndRoom(player);
             endRoom.fail();
         }
+    }
+
+    public void setGameEnd() {
+        isGameEnd = true;
     }
 }
