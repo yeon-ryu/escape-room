@@ -25,15 +25,14 @@ public class EndRoom extends Room{
 
     @Override
     public void clear() {
-        // 꾸미는건 나중에 상의
-        System.out.println("축하드립니다!! 게임을 클리어하셨습니다!!🎉");
+        System.out.println("\n축하드립니다!! 성공적으로 방을 탈출하셨습니다!!🎉");
         gm.setGameEnd();
     }
 
     @Override
     public void fail() {
-        System.out.println("게임 클리어에 실패하셨습니다.");
-        System.out.print("재도전 하시겠습니까? (y/n) : ");
+        System.out.println("방 탈출에 실패하셨습니다.");
+        System.out.print("\n재도전 하시겠습니까? (y/n) : ");
         String select = sc.nextLine();
         if("Y".equalsIgnoreCase(select)) {
             // 재도전 횟수, 열쇠 개수, gameManager 에서 플레이한 방 기록 초기화
