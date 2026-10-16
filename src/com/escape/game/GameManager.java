@@ -3,6 +3,7 @@ package com.escape.game;
 import com.escape.player.Player;
 import com.escape.room.Blackjack;
 import com.escape.room.EndRoom;
+import com.escape.room.Minesweeper;
 import com.escape.room.Room;
 
 import java.util.Arrays;
@@ -66,11 +67,17 @@ public class GameManager {
                         System.out.println("이미 클리어하신 방입니다.");
                         break;
                     }
-                    // 1번 방 이동
                     Room blackjack = new Blackjack();
                     blackjack.play();
                     break;
-                    // ++다른 방들 case 작성
+                case 2 :
+                    if(playedRoom[2]) {
+                        System.out.println("이미 클리어하신 방입니다.");
+                        break;
+                    }
+                    Room minesweeper = new Minesweeper();
+                    minesweeper.play();
+                    break;
                 case 0 :
                     Room endRoom = new EndRoom(player);
                     endRoom.play();
