@@ -32,12 +32,14 @@
 &nbsp;
 
 ## 공통 화면
-게임 시작 화면
+게임 시작 화면  
+
 ![게임 시작 화면](resources/game-start.png)
 
 &nbsp;
 
-게임 종료 화면
+게임 종료 화면  
+
 ![게임 종료 화면](resources/game-end.png)
 
 &nbsp;
