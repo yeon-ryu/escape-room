@@ -68,8 +68,15 @@ public class GameManager {
                     Room blackjack = new Blackjack();
                     blackjack.play();
                     break;
-                    // ++다른 방들 case 작성
-
+                case 2 :
+                    if(playedRoom[2]) {
+                        System.out.println("이미 클리어하신 방입니다.");
+                        break;
+                    }
+                    // 2번 방 이동
+                    Room minesweeper = new Minesweeper();
+                    minesweeper.play();
+                    break;
                 case 3 :
                     if(playedRoom[3]) {
                         System.out.println("이미 클리어하신 방입니다.");

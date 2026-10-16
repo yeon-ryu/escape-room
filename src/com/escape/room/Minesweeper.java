@@ -74,7 +74,7 @@ public class Minesweeper extends Room{
     private boolean createNewMap() {
         System.out.print("맵의 크기를 입력해주세요 : ");
         mapSize = sc.nextInt();
-        System.out.println("지뢰의 갯수를 입력해주세요 ; ");
+        System.out.print("지뢰의 갯수를 입력해주세요 : ");
         mineCount = sc.nextInt();
         sc.nextLine();
 
