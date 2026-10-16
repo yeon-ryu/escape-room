@@ -18,13 +18,15 @@ public abstract class Room {
 
     // Room 1~4 는 이하 메소드 오버라이딩 따로 필요 없음
 
+    /* play() 에서 게임 클리어 시 호출 */
     public void clear() {
-        // play() 에서 clear 시 해당 메소드를 부른다.
+        System.out.println("성공적으로 " + roomIdx + "번 방을 클리어 하셨습니다! 열쇠를 획득하셨습니다.");
         gm.clear(roomIdx);
     }
 
+    /* play() 에서 게임 실패 시 호출 */
     public void fail() {
-        // play() 에서 실패 시 해당 메소드를 부른다.
+        System.out.println("방 클리어에 실패하셨습니다. 재도전 횟수가 차감됩니다.");
         gm.fail();
     }
 }
