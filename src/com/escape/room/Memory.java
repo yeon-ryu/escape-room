@@ -106,7 +106,7 @@ public class Memory extends Room{
     }
 
     // 게임 규칙 출력
-    private void printRule() {
+    public void printRule() {
 
         System.out.println();
         System.out.println("========== ROOM 4 ==========");

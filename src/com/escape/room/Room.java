@@ -14,6 +14,8 @@ public abstract class Room {
 
     public abstract void play();
 
+    public abstract void printRule();
+
     // Room 1~4 는 이하 메소드 오버라이딩 따로 필요 없음
 
     public void clear() {

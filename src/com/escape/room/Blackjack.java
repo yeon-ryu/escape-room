@@ -201,7 +201,7 @@ public class Blackjack extends Room{
         return sb.toString();
     }
 
-    private void printRule() {
+    public void printRule() {
         System.out.println("블랙잭 룰 설명 (+승리조건, 패배조건)");
     }
 }

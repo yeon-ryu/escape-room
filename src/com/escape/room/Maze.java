@@ -73,7 +73,7 @@ public class Maze extends Room {
     }
 
     // 게임 규칙 설명
-    private void printRule(){
+    public void printRule(){
 
         System.out.println("========== ROOM 3 ==========");
         System.out.println("============================");
