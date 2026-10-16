@@ -21,6 +21,9 @@ public class EndRoom extends Room{
     }
 
     @Override
+    public void printRule() {}
+
+    @Override
     public void clear() {
         // 꾸미는건 나중에 상의
         System.out.println("축하드립니다!! 게임을 클리어하셨습니다!!🎉");
