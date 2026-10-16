@@ -108,9 +108,7 @@ public class Memory extends Room{
     // 게임 규칙 출력
     public void printRule() {
 
-        System.out.println();
-        System.out.println("========== ROOM 4 ==========");
-        System.out.println("          기억의 방");
+        System.out.println("===== 기억의 방에 들어오셨습니다. =====");
         System.out.println("============================");
 
         System.out.println("8장의 카드 중 같은 숫자 2장을 찾으세요.");
@@ -213,9 +211,4 @@ public class Memory extends Room{
         return cards[first] == cards[second];
     }
 
-    public static void main(String[] args) {
-
-        Memory memoryRoom = new Memory();
-        memoryRoom.play();
-    }
 }

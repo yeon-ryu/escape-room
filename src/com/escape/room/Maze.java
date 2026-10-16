@@ -75,10 +75,9 @@ public class Maze extends Room {
     // 게임 규칙 설명
     public void printRule(){
 
-        System.out.println("========== ROOM 3 ==========");
+        System.out.println("====어둠의 미로에 갇혔습니다.====");
         System.out.println("============================");
 
-        System.out.println("어둠의 미로에 갇혔습니다.");
         System.out.println("15번 안에 출구에 도착하세요!");
 
         System.out.println();
@@ -194,9 +193,5 @@ public class Maze extends Room {
         return maze[playerRow][playerCol] == 'E';
     }
 
-    public static void main(String[] args) {
-        Maze maze = new Maze();
-        maze.play();
-    }
 }
 
