@@ -17,14 +17,14 @@ public class Blackjack extends Room{
             }
         }
 
-        System.out.println("== 블랙잭 게임방에 들어오셨습니다. ==");
+        System.out.println("\n== 블랙잭 게임방에 들어오셨습니다. ==");
     }
 
     @Override
     public void play() {
         printRule();
 
-        System.out.println("== 블랙잭 게임을 시작합니다. ==");
+        System.out.println("블랙잭 게임을 시작합니다.");
 
         List<String> dealerCards = new ArrayList<>();
         List<String> playerCards = new ArrayList<>();
@@ -45,6 +45,7 @@ public class Blackjack extends Room{
             System.out.println("딜러 카드 : [" + dealerCards.getFirst() + ", □]");
             System.out.println("플레이어 카드 : " + playerCards);
 //            System.out.println("현재 플레이어의 숫자 : " + playerScore); // 스스로 계산하는 것까지가 블랙잭의 묘미일듯
+            System.out.println();
 
             // 첫 턴에 블랙잭이 될 수 있다 (내가 테스트하며 겪음)
             if(playerScore == BLACK_JACK) {
@@ -78,6 +79,7 @@ public class Blackjack extends Room{
             }
         }
 
+        System.out.println();
         /* 딜러는 카드를 합계 17이상 될 때까지 뽑는다 */
         System.out.println("딜러가 카드를 뽑기 시작합니다.");
         int dealerScore = calculateScore(dealerCards);
@@ -87,6 +89,7 @@ public class Blackjack extends Room{
         }
 
         System.out.println("딜러가 카드를 전부 뽑았습니다.");
+        System.out.println();
         System.out.println("==== 결과 ====");
 
         /* 4. 플레이어가 딜러보다 더 높거나 딜러가 버스트 됐을 경우 승리, 딜러가 더 높거나 같을 경우 플레이어의 패배가 된다. */
@@ -202,6 +205,20 @@ public class Blackjack extends Room{
     }
 
     public void printRule() {
-        System.out.println("블랙잭 룰 설명 (+승리조건, 패배조건)");
+        System.out.println("블랙잭에서 승리합시다!");
+        System.out.println();
+
+        System.out.println("[게임 규칙]");
+        System.out.println("블랙잭은 " + BLACK_JACK + "을 넘지 않으면서 " + BLACK_JACK + "에 가장 가까운 숫자를 만들면 승리하는 게임입니다.");
+        System.out.println("기본적으로 플레이어와 딜러는 2장의 카드를 받고, 플레이어는 원하는 만큼 카드를 추가로 받을 수 있습니다.");
+        System.out.println("카드의 합계가 정확히 " + BLACK_JACK + "이 되면 블랙잭이라 부르고 즉시 승리하며, 넘는 순간 버스트라 부르고 즉시 패배합니다.");
+        System.out.println("플레이어가 카드 받기를 멈추면 딜러가 카드를 뽑습니다.");
+        System.out.println("딜러가 버스트가 되거나, 플레이어가 딜러보다 합계 수치가 높을 시 플레이어의 승리가 됩니다.");
+        System.out.println();
+
+        System.out.println("문자 카드가 의미하는 숫자");
+        System.out.println("[K], [Q], [J] = 10");
+        System.out.println("[A] = 1 or 11");
+        System.out.println();
     }
 }

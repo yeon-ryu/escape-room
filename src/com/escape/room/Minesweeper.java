@@ -15,7 +15,8 @@ public class Minesweeper extends Room{
         roomIdx = 2;
 
         isEnd = false;
-        System.out.println("== 지뢰찾기 게임 방에 들어오셨습니다. ==");
+
+        System.out.println("\n== 지뢰찾기 게임방에 들어오셨습니다. ==");
     }
 
     @Override
@@ -36,7 +37,7 @@ public class Minesweeper extends Room{
             printMap();
 
             // 플레이어가 판을 연다.
-            System.out.print("오픈할 칸의 행과 열을 띄어쓰기로 구분하여 입력해주세요 : ");
+            System.out.print("확인할 칸의 행과 열을 띄어쓰기로 구분하여 입력해주세요 : ");
             String inputStr = sc.nextLine();
             int openX = Integer.valueOf(inputStr.split(" ")[0]);
             int openY = Integer.valueOf(inputStr.split(" ")[1]);
@@ -125,6 +126,8 @@ public class Minesweeper extends Room{
 
     /* 플레이어가 연 정보, 플레이어가 지뢰 표시한 정보를 기반으로 보일 맵을 그린다 */
     private void printMap() {
+        System.out.println();
+
         for(int i = 0; i < mapSize; i++) {
             StringBuilder sb = new StringBuilder();
             for(int j = 0; j < mapSize; j++) {
@@ -140,9 +143,17 @@ public class Minesweeper extends Room{
             }
             System.out.println(sb.toString());
         }
+
+        System.out.println();
     }
 
     public void printRule() {
-        System.out.println("행과 열은 0, 0 부터 시작입니다.");
+        System.out.println("지뢰를 피해 안전한 칸을 전부 선택해주세요!");
+        System.out.println();
+
+        System.out.println("[게임 규칙]");
+        System.out.println("칸의 위치는 (0, 0) 부터 시작합니다.");
+        System.out.println("입력은 행과 열을 띄워쓰기로 구분하여 입력합니다.");
+        System.out.println();
     }
 }

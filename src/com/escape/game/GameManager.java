@@ -40,6 +40,7 @@ public class GameManager {
         while(true) {
             if(isGameEnd) return;
 
+            System.out.println();
             player.showPlayerStatus();
 
             StringBuilder selectSb = new StringBuilder();
