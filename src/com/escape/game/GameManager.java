@@ -1,9 +1,7 @@
 package com.escape.game;
 
 import com.escape.player.Player;
-import com.escape.room.Blackjack;
-import com.escape.room.EndRoom;
-import com.escape.room.Room;
+import com.escape.room.*;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -71,6 +69,27 @@ public class GameManager {
                     blackjack.play();
                     break;
                     // ++다른 방들 case 작성
+
+                case 3 :
+                    if(playedRoom[3]) {
+                        System.out.println("이미 클리어하신 방입니다.");
+                        break;
+                    }
+                    // 3번 방 이동
+                    Room maze = new Maze();
+                    maze.play();
+                    break;
+
+                case 4 :
+                    if(playedRoom[4]) {
+                        System.out.println("이미 클리어하신 방입니다.");
+                        break;
+                    }
+                    // 4번 방 이동
+                    Room memory = new Memory();
+                    memory.play();
+                    break;
+
                 case 0 :
                     Room endRoom = new EndRoom(player);
                     endRoom.play();
