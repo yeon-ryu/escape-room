@@ -58,6 +58,7 @@ public class GameManager {
             System.out.print("들어갈 방 번호를 입력해 주세요 : ");
 
             int no = sc.nextInt();
+            sc.nextLine();
 
             switch(no) {
                 case 1 :
@@ -99,6 +100,12 @@ public class GameManager {
                     break;
 
                 case 0 :
+                    System.out.print("열쇠가 부족하실 경우 탈출에 실패합니다. 정말 들어가시겠습니까?(y/n) ");
+                    String goEnd = sc.nextLine();
+                    if(!"Y".equalsIgnoreCase(goEnd)) {
+                        break;
+                    }
+
                     Room endRoom = new EndRoom(player);
                     endRoom.play();
                     break;
