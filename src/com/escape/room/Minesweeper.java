@@ -39,8 +39,8 @@ public class Minesweeper extends Room{
             // 플레이어가 판을 연다.
             System.out.print("확인할 칸의 행과 열을 띄어쓰기로 구분하여 입력해주세요 : ");
             String inputStr = sc.nextLine();
-            int openX = Integer.valueOf(inputStr.split(" ")[0]);
-            int openY = Integer.valueOf(inputStr.split(" ")[1]);
+            int openX = Integer.valueOf(inputStr.split(" ")[0]) - 1;
+            int openY = Integer.valueOf(inputStr.split(" ")[1]) - 1;
 
             if(openX < 0 || openX >= mapSize || openY < 0 || openY >= mapSize) {
                 System.out.println("맵 밖 위치를 지정할 수 없습니다!");
@@ -133,12 +133,12 @@ public class Minesweeper extends Room{
             for(int j = 0; j < mapSize; j++) {
                 if(isEnd || openMap[i][j]) { // 열린 칸
                     if(map[i][j] == -1) {
-                        sb.append("💣");
+                        sb.append(" 💣 ");
                     } else {
-                        sb.append(map[i][j] + " ");
+                        sb.append("  " + map[i][j] + "  ");
                     }
                 } else { // 닫힌 칸
-                    sb.append("■ ");
+                    sb.append("  ■  ");
                 }
             }
             System.out.println(sb.toString());
@@ -152,7 +152,7 @@ public class Minesweeper extends Room{
         System.out.println();
 
         System.out.println("[게임 규칙]");
-        System.out.println("칸의 위치는 (0, 0) 부터 시작합니다.");
+        System.out.println("칸의 위치는 (1, 1) 부터 시작합니다.");
         System.out.println("입력은 행과 열을 띄워쓰기로 구분하여 입력합니다.");
         System.out.println();
     }
