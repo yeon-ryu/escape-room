@@ -7,6 +7,12 @@ public class EndRoom extends Room{
 
     public EndRoom(Player player) {
         this.player = player;
+        roomIdx = 0;
+    }
+
+    @Override
+    protected void init() {
+
     }
 
     @Override

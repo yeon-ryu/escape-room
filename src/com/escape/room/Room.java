@@ -12,6 +12,8 @@ public abstract class Room {
     /* 각 방은 고유한 roomIdx 를 반드시 구현하여야 합니다. */
     protected int roomIdx = -1;
 
+    protected abstract void init();
+
     public abstract void play();
 
     public abstract void printRule();

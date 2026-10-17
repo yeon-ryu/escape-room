@@ -18,7 +18,10 @@ public class Maze extends Room {
 
     public Maze() {
         roomIdx = 3;
+    }
 
+    @Override
+    protected void init() {
         playerRow = 0;
         playerCol = 0;
         moveCount = 0;
@@ -28,10 +31,7 @@ public class Maze extends Room {
     public void play() {
 
         // 시작 시 초기화
-
-        playerRow = 0;
-        playerCol = 0;
-        moveCount = 0;
+        init();
 
         printRule();
 

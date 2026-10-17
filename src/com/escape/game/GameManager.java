@@ -36,6 +36,8 @@ public class GameManager {
             insertPlayer();
         }
 
+        Room[] rooms = {new EndRoom(player), new Blackjack(), new Minesweeper(), new Maze(), new Memory()};
+
         // 메인 메뉴 선택
         while(true) {
             if(isGameEnd) return;
@@ -60,59 +62,25 @@ public class GameManager {
             int no = sc.nextInt();
             sc.nextLine();
 
-            switch(no) {
-                case 1 :
-                    if(playedRoom[1]) {
-                        System.out.println("이미 클리어하신 방입니다.");
-                        break;
-                    }
-                    // 1번 방 이동
-                    Room blackjack = new Blackjack();
-                    blackjack.play();
-                    break;
-                case 2 :
-                    if(playedRoom[2]) {
-                        System.out.println("이미 클리어하신 방입니다.");
-                        break;
-                    }
-                    // 2번 방 이동
-                    Room minesweeper = new Minesweeper();
-                    minesweeper.play();
-                    break;
-                case 3 :
-                    if(playedRoom[3]) {
-                        System.out.println("이미 클리어하신 방입니다.");
-                        break;
-                    }
-                    // 3번 방 이동
-                    Room maze = new Maze();
-                    maze.play();
-                    break;
-
-                case 4 :
-                    if(playedRoom[4]) {
-                        System.out.println("이미 클리어하신 방입니다.");
-                        break;
-                    }
-                    // 4번 방 이동
-                    Room memory = new Memory();
-                    memory.play();
-                    break;
-
-                case 0 :
-                    System.out.print("열쇠가 부족하실 경우 탈출에 실패합니다. 정말 들어가시겠습니까?(y/n) ");
-                    String goEnd = sc.nextLine();
-                    if(!"Y".equalsIgnoreCase(goEnd)) {
-                        break;
-                    }
-
-                    Room endRoom = new EndRoom(player);
-                    endRoom.play();
-                    break;
-                default:
-                    System.out.println("존재하지 않는 방입니다.");
-
+            if(no < 0 || no >= MAX_ROOM) {
+                System.out.println("존재하지 않는 방입니다.");
+                continue;
             }
+
+            if(playedRoom[no]) {
+                System.out.println("이미 클리어하신 방입니다.");
+                continue;
+            }
+
+            if(no == 0) {
+                System.out.print("열쇠가 부족하실 경우 탈출에 실패합니다. 정말 들어가시겠습니까?(y/n) ");
+                String goEnd = sc.nextLine();
+                if(!"Y".equalsIgnoreCase(goEnd)) {
+                    continue;
+                }
+            }
+
+            rooms[no].play();
         }
     }
 

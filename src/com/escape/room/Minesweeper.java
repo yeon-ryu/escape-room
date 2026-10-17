@@ -13,14 +13,19 @@ public class Minesweeper extends Room{
 
     public Minesweeper() {
         roomIdx = 2;
+    }
 
+    @Override
+    protected void init() {
         isEnd = false;
-
-        System.out.println("\n== 지뢰찾기 게임방에 들어오셨습니다. ==");
     }
 
     @Override
     public void play() {
+        System.out.println("\n== 지뢰찾기 게임방에 들어오셨습니다. ==");
+
+        init();
+
         printRule();
 
         System.out.println("맵을 새로 생성합니다.");

@@ -9,19 +9,24 @@ public class Blackjack extends Room{
 
     public Blackjack() {
         roomIdx = 1;
+    }
 
+    @Override
+    protected void init() {
         // 덱 초기화
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 13; j++) {
                 deck[i * 13 + j] = makeCard(i, j + 2);
             }
         }
-
-        System.out.println("\n== 블랙잭 게임방에 들어오셨습니다. ==");
     }
 
     @Override
     public void play() {
+        System.out.println("\n== 블랙잭 게임방에 들어오셨습니다. ==");
+
+        init();
+
         printRule();
 
         System.out.println("블랙잭 게임을 시작합니다.");

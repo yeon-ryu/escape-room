@@ -21,14 +21,19 @@ public class Memory extends Room{
         roomIdx = 4;
     }
 
+    @Override
+    protected void init() {
+        turnCount = 0;
+        matchCount = 0;
+        Arrays.fill(matched, false);
+    }
+
     // 게임 진행
     @Override
     public void play() {
 
         // 게임 상태 초기화
-        turnCount = 0;
-        matchCount = 0;
-        Arrays.fill(matched, false);
+        init();
 
         initCards();
         printRule();
