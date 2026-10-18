@@ -60,58 +60,44 @@ public class GameManager {
             int no = sc.nextInt();
             sc.nextLine();
 
-            switch(no) {
-                case 1 :
-                    if(playedRoom[1]) {
-                        System.out.println("이미 클리어하신 방입니다.");
-                        break;
-                    }
-                    // 1번 방 이동
-                    Room blackjack = new Blackjack();
-                    blackjack.play();
-                    break;
-                case 2 :
-                    if(playedRoom[2]) {
-                        System.out.println("이미 클리어하신 방입니다.");
-                        break;
-                    }
-                    // 2번 방 이동
-                    Room minesweeper = new Minesweeper();
-                    minesweeper.play();
-                    break;
-                case 3 :
-                    if(playedRoom[3]) {
-                        System.out.println("이미 클리어하신 방입니다.");
-                        break;
-                    }
-                    // 3번 방 이동
-                    Room maze = new Maze();
-                    maze.play();
-                    break;
+            Room room = null;
 
-                case 4 :
-                    if(playedRoom[4]) {
-                        System.out.println("이미 클리어하신 방입니다.");
-                        break;
-                    }
-                    // 4번 방 이동
-                    Room memory = new Memory();
-                    memory.play();
-                    break;
+            if (no >= 1 && no <= 4 && playedRoom[no]) {
+                System.out.println("이미 클리어하신 방입니다.");
+                continue;
+            }
 
-                case 0 :
-                    System.out.print("열쇠가 부족하실 경우 탈출에 실패합니다. 정말 들어가시겠습니까?(y/n) ");
+            switch (no) {
+                case 1:
+                    room = new Blackjack();
+                    break;
+                case 2:
+                    room = new Minesweeper();
+                    break;
+                case 3:
+                    room = new Maze();
+                    break;
+                case 4:
+                    room = new Memory();
+                    break;
+                case 0:
+                    System.out.print(
+                            "열쇠가 부족하실 경우 탈출에 실패합니다. 정말 들어가시겠습니까?(y/n) "
+                    );
+
                     String goEnd = sc.nextLine();
-                    if(!"Y".equalsIgnoreCase(goEnd)) {
-                        break;
-                    }
 
-                    Room endRoom = new EndRoom(player);
-                    endRoom.play();
+                    if ("Y".equalsIgnoreCase(goEnd)) {
+                        room = new EndRoom(player);
+                    }
                     break;
                 default:
                     System.out.println("존재하지 않는 방입니다.");
+            }
 
+            // 다형성 활용: 실제 객체에 맞는 play() 실행
+            if (room != null) {
+                room.play();
             }
         }
     }
@@ -129,7 +115,6 @@ public class GameManager {
         if(keyCount >= 3) {
             System.out.println("열쇠를 3개 이상 모으셨습니다. 탈출 방으로 가시면 클리어하실 수 있습니다.");
         }
-        selectMenu();
     }
 
     public void fail() {

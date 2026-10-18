@@ -39,7 +39,7 @@ public class EndRoom extends Room{
             // gameManager 메뉴 선택 호출
             player.resetInfo();
             gm.reset();
-            gm.selectMenu();
+            System.out.println("게임을 다시 시작합니다.");
         } else {
             System.out.println("게임을 종료합니다.");
             gm.setGameEnd();
