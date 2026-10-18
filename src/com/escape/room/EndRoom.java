@@ -32,17 +32,23 @@ public class EndRoom extends Room{
     @Override
     public void fail() {
         System.out.println("방 탈출에 실패하셨습니다.");
-        System.out.print("\n재도전 하시겠습니까? (y/n) : ");
-        String select = sc.nextLine();
-        if("Y".equalsIgnoreCase(select)) {
-            // 재도전 횟수, 열쇠 개수, gameManager 에서 플레이한 방 기록 초기화
-            // gameManager 메뉴 선택 호출
-            player.resetInfo();
-            gm.reset();
-            System.out.println("게임을 다시 시작합니다.");
-        } else {
-            System.out.println("게임을 종료합니다.");
-            gm.setGameEnd();
+        while(true) {
+            System.out.print("\n재도전 하시겠습니까? (y/n) : ");
+            String select = sc.nextLine();
+            if ("Y".equalsIgnoreCase(select)) {
+                // 재도전 횟수, 열쇠 개수, gameManager 에서 플레이한 방 기록 초기화
+                // gameManager 메뉴 선택 호출
+                player.resetInfo();
+                gm.reset();
+                System.out.println("게임을 다시 시작합니다.");
+            } else if ("N".equalsIgnoreCase(select)) {
+                System.out.println("게임을 종료합니다.");
+                gm.setGameEnd();
+            } else {
+                System.out.println("입력이 잘못 되셨습니다.");
+                continue;
+            }
+            break;
         }
     }
 }

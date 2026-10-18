@@ -73,9 +73,11 @@ public class Blackjack extends Room{
                     fail();
                     return;
                 }
-            } else {
+            } else if("N".equalsIgnoreCase(select)) {
                 System.out.println("스테이하셨습니다.");
                 break;
+            } else {
+                System.out.println("입력이 잘못되었습니다. 다시 선택해주세요.");
             }
         }
 

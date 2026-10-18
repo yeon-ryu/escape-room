@@ -39,6 +39,10 @@ public class Minesweeper extends Room{
             // 플레이어가 판을 연다.
             System.out.print("확인할 칸의 행과 열을 띄어쓰기로 구분하여 입력해주세요 : ");
             String inputStr = sc.nextLine();
+            if(!inputStr.matches("^\\d+ \\d+$")) {
+                System.out.println("입력 형식이 잘못 되었습니다.");
+                continue;
+            }
             int openX = Integer.valueOf(inputStr.split(" ")[0]) - 1;
             int openY = Integer.valueOf(inputStr.split(" ")[1]) - 1;
 
@@ -73,11 +77,31 @@ public class Minesweeper extends Room{
 
     /* map 에 랜덤으로 mineCount 만큼의 지뢰를 만들고 그 주변의 갯수 숫자를 넣는다. */
     private boolean createNewMap() {
-        System.out.print("맵의 크기를 입력해주세요 : ");
-        mapSize = sc.nextInt();
-        System.out.print("지뢰의 갯수를 입력해주세요 : ");
-        mineCount = sc.nextInt();
-        sc.nextLine();
+        while(mapSize <= 0) {
+            System.out.print("맵의 크기를 입력해주세요 : ");
+            if (!sc.hasNextInt()) {
+                System.out.println("맵 크기는 숫자로 입력하셔야 합니다.");
+                sc.next();
+                continue;
+            }
+            mapSize = sc.nextInt();
+            if(mapSize <= 0) {
+                System.out.println("0 이하의 숫자는 입력하실 수 없습니다.");
+            }
+        }
+        while(mineCount <= 0) {
+            System.out.print("지뢰의 갯수를 입력해주세요 : ");
+            if (!sc.hasNextInt()) {
+                System.out.println("지뢰의 갯수는 숫자로 입력하셔야 합니다.");
+                sc.next();
+                continue;
+            }
+            mineCount = sc.nextInt();
+            sc.nextLine();
+            if(mineCount <= 0) {
+                System.out.println("0 이하의 숫자는 입력하실 수 없습니다.");
+            }
+        }
 
         if(mineCount > mapSize * mapSize - 1) {
             System.out.println("지뢰 숫자가 이상하여 지뢰찾기 맵을 만들 수 없습니다.");
