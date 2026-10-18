@@ -58,10 +58,43 @@
 ![지뢰찾기 화면](resources/minesweeper.png)
 
 ### 어둠의 미로
-구현할 때 신경 썼던 부분(로직이든 기술이든) 혹은 말하고 싶은 부분이나 간단 설명
-[미니 게임 캡쳐 화면]
+5×5 미로에서 장애물을 피해 제한된 이동 횟수 안에 출구에 도달하는 게임
+
+- 2차원 배열로 미로를 구성하고, W/A/S/D 입력에 따라 플레이어의 좌표가 변경되도록 구현
+- 이동 전 배열의 범위와 벽 충돌 여부를 검사하여, 유효한 이동에만 횟수가 차감되도록 처리
+- 플레이어의 현재 위치를 실시간으로 출력하고, 15회 이내 출구 도착 여부에 따라 성공과 실패를 판정
+<br> <br>
+- 게임 시작 화면
+<br> <br>
+<img src="resources/maze-start.png" alt="어둠의 미로 게임 시작 화면" width="300">
+<br>
+- 플레이어 이동 화면
+  <br> <br>
+<img src="resources/maze-move.png" alt="어둠의 미로 게임 이동 화면" width="300">
+  <br>
+- 방 탈출 시 화면
+  <br> <br>
+<img src="resources/maze-exit.png" alt="어둠의 미로 게임 탈출 화면" width="350">
+
 
 ### 기억의 방
+무작위로 배치된 카드 8장 중 같은 숫자의 카드 4쌍을 맞추는 게임
+
+- Math.random()과 임시 변수를 이용한 배열 요소 교환 방식으로 카드 배치를 무작위화
+- boolean[] 배열로 카드별 짝 맞추기 여부를 관리하여, 정답 카드는 공개 상태를 유지하도록 구현
+- 카드 중복 선택 및 잘못된 입력을 검증하고, 10턴 이내에 4쌍을 완성했는지에 따라 성공과 실패를 판정
+  <br> <br>
+- 게임 시작 화면
+  <br> <br>
+  <img src="resources/memory-start.png" alt="기억의 방 게임 시작 화면" width="330">
+  <br>
+- 게임 실행 중 화면
+  <br> <br>
+  <img src="resources/memory-playing.png" alt="기억의 방 게임 플레이 화면" width="200">
+  <br>
+- 방 탈출 시 화면
+  <br> <br>
+  <img src="resources/memory-exit.png" alt="기억의 방 게임 탈출 화면" width="350">
 
 
 &nbsp;
