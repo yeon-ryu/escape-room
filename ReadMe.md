@@ -16,7 +16,8 @@
 /room   - Room          - Blackjack
                         - Minesweeper
                         - Maze
-                        - Memory 
+                        - Memory
+                        - EndRoom
 ```
 ### 객체 지향 설계
 - **추상화** : `ROOM` 추상 클래스로 게임 승리의/패배 시 공통 동작 정의
